@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+
+<body>
+    <h2 style="text-align: center;">Create new PRA entry</h2>
+
+    <form method=post>
+        {{ form.csrf_token }}
+        <fieldset>
+            <legend>PRA Form</legend>
+            {{ form.hidden_tag() }}
+
+            <div style=font-size:20px; font-weight:bold; margin-left:150px;>
+                {{ form.county.label }}
+                {{ form.county }}
+                {% if form.county.errors %}
+                <ul class=errors>
+                    {% for error in form.county.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+
+                {{ form.lea.label }}
+                {{ form.lea }}
+                {% if form.lea.errors %}
+                <ul class=errors>
+                    {% for error in form.lea.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+
+                {{ form.isSheriffsDept.label }}
+                {{ form.isSheriffsDept }}
+                {% if form.isSheriffsDept.errors %}
+                <ul class=errors>
+                    {% for error in form.isSheriffsDept.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+
+                {{ form.dateOfLastContact.label }}
+                {{ form.dateOfLastContact }}
+                {% if form.dateOfLastContact.errors %}
+                <ul class=errors>
+                    {% for error in form.dateOfLastContact.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+
+                {{ form.currentStatus.label }}
+                {{ form.currentStatus }}
+                {% if form.currentStatus.errors %}
+                <ul class=errors>
+                    {% for error in form.currentStatus.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.comments.label }}
+                {{ form.comments }}
+                {% if form.comments.errors %}
+                <ul class=errors>
+                    {% for error in form.comments.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.dateOfRequest.label }}
+                {{ form.dateOfRequest }}
+                {% if form.dateOfRequest.errors %}
+                <ul class=errors>
+                    {% for error in form.dateOfRequest.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.startDateRequested.label }}
+                {{ form.startDateRequested }}
+                {% if form.startDateRequested.errors %}
+                <ul class=errors>
+                    {% for error in form.startDateRequested.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.endDateRequested.label }}
+                {{ form.endDateRequested }}
+                {% if form.endDateRequested.errors %}
+                <ul class=errors>
+                    {% for error in form.endDateRequested.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.initialContactPerson.label }}
+                {{ form.initialContactPerson }}
+                {% if form.initialContactPerson.errors %}
+                <ul class=errors>
+                    {% for error in form.initialContactPerson.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.initialContactMethod.label }}
+                {{ form.initialContactMethod }}
+                {% if form.initialContactMethod.errors %}
+                <ul class=errors>
+                    {% for error in form.initialContactMethod.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.initialContactInfo.label }}
+                {{ form.initialContactInfo }}
+                {% if form.initialContactInfo.errors %}
+                <ul class=errors>
+                    {% for error in form.initialContactInfo.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.leadMember.label }}
+                {{ form.leadMember }}
+                {% if form.leadMember.errors %}
+                <ul class=errors>
+                    {% for error in form.leadMember.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                {{ form.linkToPRARequest.label }}
+                {{ form.linkToPRARequest }}
+                {% if form.linkToPRARequest.errors %}
+                <ul class=errors>
+                    {% for error in form.linkToPRARequest.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <br>
+                <br>
+                <input type="submit" value="Submit" >
+            </div>
+
+        </fieldset>
+    </form>
+</body>
+
+</html>
