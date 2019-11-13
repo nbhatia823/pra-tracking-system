@@ -8,4 +8,4 @@ class Config:
 	PORT = '5432'
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
-SECRET_KEY = 'the random string'
+SECRET_KEY = 'theeeeeee random string'

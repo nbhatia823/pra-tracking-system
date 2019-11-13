@@ -1,13 +1,20 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, Blueprint
 from flask_wtf.csrf import CSRFProtect
 
-from models import *
-from frontend_models import *
-from definitions import *
+from classes.frontend_models import PRACreationForm, PRATable
+from classes.pra import Pra
+from db import Db
+from api import pra_api
 
 app = Flask(__name__)
+app.register_blueprint(pra_api)
+print(app.secret_key)
 app.secret_key = 'the random string'
+print(app.secret_key)
+
 csrf = CSRFProtect(app)
+app.config['WTF_CSRF_ENABLED'] = False
+
 
 @app.route("/")
 def home():
@@ -39,22 +46,21 @@ def create():
             pra = Pra(
                 comments=request.form['comments'],
                 county=request.form['county'],
-                currentstatus=request.form['currentStatus'],
-                dateoflastcontact=request.form['dateOfLastContact'],
-                dateofrequest=request.form['dateOfRequest'],
-                enddaterequested=request.form['endDateRequested'],
-                initialcontactmethod=request.form['initialContactMethod'],
-                initialcontactinfo=request.form['initialContactInfo'],
-                initialcontactperson=request.form['initialContactPerson'],
+                currentstatus=request.form['currentstatus'],
+                dateoflastcontact=request.form['dateoflastcontact'],
+                dateofrequest=request.form['dateofrequest'],
+                enddaterequested=request.form['enddaterequested'],
+                initialcontactmethod=request.form['initialcontactmethod'],
+                initialcontactinfo=request.form['initialcontactinfo'],
+                initialcontactperson=request.form['initalcontactperson'],
                 issheriffsdept=True if 'ifSheriffsDept' in request.form else False,
                 lea=request.form['lea'],
-                leadmember=request.form['leadMember'],
-                linktoprarequest=request.form['linkToPRARequest'],
-                startdaterequested=request.form['startDateRequested'],
+                leadmember=request.form['leadmember'],
+                linktoprarequest=request.form['linktoprarequest'],
+                startdaterequested=request.form['startdaterequested'],
             )
             pra.save()
             return redirect('/')
-        print("reached3")
 
     elif request.method == 'GET':
         return render_template("create.html", form=form)
