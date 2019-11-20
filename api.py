@@ -1,6 +1,7 @@
 from flask import request, json, Response, Blueprint
 from db import Db
 from playhouse.shortcuts import model_to_dict
+from definitions import Definitions
 
 # i need to respond to POST and PUT and DELETE requests with success messages or error codes. 
 # i need to send the proper response number.
@@ -14,17 +15,34 @@ def post_or_get_pras():
     if request.method == 'GET':
         # read filters from query parameter and store as dictionary; 
         # each entry is field_name: filter_value i.e. LEA="Los Angeles Police Department"
-        filters = request.args.to_dict()
-        
-        # "limit" is passed as normal query parameter. if present remove it from filters
+        query_params = request.args.to_dict()
+
+        # "limit" is passed as normal query parameter. if present remove it and store in limit
         # so filters can be exclusively filters for "WHERE" query
         # if not present, then default limit will be used
-        if "limit" in filters:
-            limit = filters["limit"]
-            del filters["limit"]
-            pra_dicts = Db.get_pras(filters=filters, limit=limit)    
+        if "limit" in query_params:
+            limit = query_params["limit"]
+            del query_params["limit"]
         else:
-            pra_dicts = Db.get_pras(filters)
+            limit = Definitions.DEFAULT_NUM_ROW_ENTRIES
+
+        # "fields" passed as array of fields, perform same as above
+        if "fields" in query_params:
+            fields_requested = query_params["fields"]
+            del query_params["fields"]
+            if fields_requested == "all":
+                fields = Definitions.ALL_PRA_FIELDS
+            elif fields_requested == "status":
+                fields = Definitions.STATUS_PRA_FIELDS
+            else:
+                fields = Definitions.DEFAULT_PRA_FIELDS
+        else:
+            fields = Definitions.DEFAULT_PRA_FIELDS
+        
+        # remaining parameters make up the filters
+        filters = query_params
+
+        pra_dicts = Db.get_pras(fields=fields, filters=filters, limit=limit)
         
         # package pras as json
         pra_json = json.dumps(pra_dicts)
@@ -33,7 +51,6 @@ def post_or_get_pras():
                         status=200)
     
     elif request.method == 'POST':
-        print("attempting to post new request")
         pra_field_mappings = get_pra_info_from_current_request()
         new_pra_id = Db.create_pra(pra_field_mappings)
         if new_pra_id != -1:
@@ -43,7 +60,7 @@ def post_or_get_pras():
 
 @pra_api.route('/api/pra/<id>', methods=['PUT', 'GET', 'DELETE'])
 def get_or_update_or_delete_pra(id): # 'id' is string-type
-    ``
+    
     if request.method == 'PUT':
         pra_field_mappings = get_pra_info_from_current_request()
         rows_updated = Db.update_pra(id, pra_field_mappings)
@@ -53,7 +70,18 @@ def get_or_update_or_delete_pra(id): # 'id' is string-type
             return Response(status=400)
     
     elif request.method == 'GET':
-        pra_dict = Db.get_pra(id)
+        query_params = request.args.to_dict()
+        if "fields" in query_params:
+            fields_requested = query_params["fields"]
+            if fields_requested == "all":
+                fields = Definitions.ALL_PRA_FIELDS
+            elif fields_requested == "status":
+                fields = Definitions.STATUS_PRA_FIELDS
+            else:
+                fields = Definitions.DEFAULT_PRA_FIELDS
+        else:
+            fields = Definitions.DEFAULT_PRA_FIELDS
+        pra_dict = Db.get_pra(id, fields=fields)
         # if the pra with given id exists, send it back as json;
         if pra_dict:
             pra_json = json.dumps(pra_dict)

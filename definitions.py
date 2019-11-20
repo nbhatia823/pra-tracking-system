@@ -16,9 +16,9 @@ class Definitions:
         ('portal', 'Portal'), 
     ]
 
-    MAX_ROW_ENTRIES = 20
+    DEFAULT_NUM_ROW_ENTRIES = 20
 
-    DEFAULT_DESIRED_PRA_FIELDS = [
+    DEFAULT_PRA_FIELDS = [
         Pra.id,
         Pra.county,
         Pra.lea,
@@ -27,4 +27,48 @@ class Definitions:
         Pra.enddaterequested,
         Pra.dateofrequest,
         Pra.currentstatus
+    ]
+
+    ALL_PRA_FIELDS = [
+        Pra.comments,
+        Pra.county,
+        Pra.currentcontact,
+        Pra.currentstatus,
+        Pra.dataactionable,
+        Pra.dataanalyzed,
+        Pra.datacleaned,
+        Pra.datageocoded,
+        Pra.dataqualitychecked,
+        Pra.dateoflastcontact,
+        Pra.dateofrequest,
+        Pra.enddaterequested,
+        Pra.enddatereturned,
+        Pra.initialcontact,
+        Pra.issheriffsdept,
+        Pra.lea,
+        Pra.leadmember,
+        Pra.linktoprarequest,
+        Pra.startdaterequested,
+        Pra.startdatereturned,
+        Pra.updates,
+        Pra.variables,
+        Pra.variableschecked,
+        Pra.variablescomplete,
+    ]
+
+    STATUS_PRA_FIELDS =  [
+        Pra.county,
+        Pra.currentstatus,
+        Pra.dataactionable,
+        Pra.dataanalyzed,
+        Pra.datacleaned,
+        Pra.datageocoded,
+        Pra.dataqualitychecked,
+        Pra.dateofrequest,
+        Pra.enddatereturned,
+        Pra.issheriffsdept,
+        Pra.lea,
+        Pra.startdatereturned,
+        Pra.variableschecked,
+        Pra.variablescomplete,
     ]

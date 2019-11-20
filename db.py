@@ -15,7 +15,7 @@ class Db:
 
     # Return list of pras with the desired columns; fields/columns are editable by passing in array of fields accessible by Pra.fieldname
     @staticmethod
-    def get_pras(filters=None, limit=Definitions.MAX_ROW_ENTRIES, fields=Definitions.DEFAULT_DESIRED_PRA_FIELDS):
+    def get_pras(filters=None, limit=Definitions.DEFAULT_NUM_ROW_ENTRIES, fields=Definitions.DEFAULT_PRA_FIELDS):
         if filters:
             expr_filters = Db.convert_filter_dict_to_peewee_expr(filters)
             pras = Pra.select(*fields).where(expr_filters).limit(limit).dicts().execute()
@@ -27,8 +27,9 @@ class Db:
     # Return a single pra with id=id and only return desired columns;
     # need to unpack array response from select query and send model only
     @staticmethod
-    def get_pra(id, fields=Definitions.DEFAULT_DESIRED_PRA_FIELDS):
-        pras = Pra.select(*fields).where(Pra.id == id).limit(1).dicts().execute()
+    def get_pra(id, fields=Definitions.DEFAULT_PRA_FIELDS):
+        print("attempting to print ")
+        pras = Pra.select(**fields).where(Pra.id == id).limit(1).dicts().execute()
         if len(pras) == 1:
             return pras[0]
         else:
@@ -77,3 +78,8 @@ class Db:
         return anded_expr
 
 
+    @staticmethod
+    def convert_array_fields_to_peewee_fields(fields):
+        peewee_fields = []
+        for field in fields:
+            peewee_fields.append(getattr(Pra, field))
