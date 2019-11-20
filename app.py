@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, Blueprint
+from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect
 
 from classes.frontend_models import PRACreationForm, PRATable
@@ -8,6 +9,9 @@ from api import pra_api
 
 app = Flask(__name__)
 app.register_blueprint(pra_api)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 print(app.secret_key)
 app.secret_key = 'the random string'
 print(app.secret_key)
