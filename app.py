@@ -8,13 +8,11 @@ from db import Db
 from api import pra_api
 
 app = Flask(__name__)
-app.register_blueprint(pra_api)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
-print(app.secret_key)
+app.register_blueprint(pra_api)
+
 app.secret_key = 'the random string'
-print(app.secret_key)
 
 csrf = CSRFProtect(app)
 app.config['WTF_CSRF_ENABLED'] = False

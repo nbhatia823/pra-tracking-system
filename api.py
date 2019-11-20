@@ -1,5 +1,4 @@
 from flask import request, json, Response, Blueprint
-from flas_cors import cross_origin
 from db import Db
 from playhouse.shortcuts import model_to_dict
 from definitions import Definitions
@@ -12,7 +11,6 @@ pra_api = Blueprint('pra_api', __name__)
 
 
 @pra_api.route('/api/pra', methods=['GET', 'POST'])
-@cross_origin()
 def post_or_get_pras():
 
     if request.method == 'GET':
@@ -63,7 +61,6 @@ def post_or_get_pras():
 
 
 @pra_api.route('/api/pra/<id>', methods=['PUT', 'GET', 'DELETE'])
-@cross_origin()
 def get_or_update_or_delete_pra(id):  # 'id' is string-type
 
     if request.method == 'PUT':
