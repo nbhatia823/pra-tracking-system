@@ -43,7 +43,8 @@ def post_or_get_pras():
         # remaining parameters make up the filters
         filters = query_params
 
-        pra_dicts = Db.get_pras(fields=fields, filters=filters, limit=limit)
+        pra_dicts = Db.get_pras(
+            fields=fields, filters=filters, limit=limit)
 
         # package pras as json
         pra_json = json.dumps(pra_dicts)
@@ -66,6 +67,7 @@ def get_or_update_or_delete_pra(id):  # 'id' is string-type
     if request.method == 'PUT':
         pra_field_mappings = get_pra_info_from_current_request()
         rows_updated = Db.update_pra(id, pra_field_mappings)
+
         if rows_updated == 1:
             return Response(status=204)
         else:

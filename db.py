@@ -30,7 +30,6 @@ class Db:
     # need to unpack array response from select query and send model only
     @staticmethod
     def get_pra(id, fields=Definitions.DEFAULT_PRA_FIELDS):
-        print("attempting to print ")
         pras = Pra.select(**fields).where(Pra.id ==
                                           id).limit(1).dicts().execute()
         if len(pras) == 1:

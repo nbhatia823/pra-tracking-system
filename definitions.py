@@ -1,19 +1,20 @@
 from classes.pra import Pra
 
+
 class Definitions:
     STATUSES = [
-        ('Data requested - no response', 'Data requested - no response'), 
-        ('Data requested - in process', 'Data requested - in process'), 
-        ('Data received - incomplete', 'Data received - incomplete'), 
-        ('Data received - no errors', 'Data received - no errors'), 
+        ('Data requested - no response', 'Data requested - no response'),
+        ('Data requested - in process', 'Data requested - in process'),
+        ('Data received - incomplete', 'Data received - incomplete'),
+        ('Data received - no errors', 'Data received - no errors'),
         ('Data ready for analysis', 'Data ready for analysis'),
     ]
 
     CONTACT_METHODS = [
-        ('phone', 'Phone'), 
-        ('email', 'Email'), 
-        ('fax', 'Fax'), 
-        ('portal', 'Portal'), 
+        ('phone', 'Phone'),
+        ('email', 'Email'),
+        ('fax', 'Fax'),
+        ('portal', 'Portal'),
     ]
 
     DEFAULT_NUM_ROW_ENTRIES = 20
@@ -43,6 +44,7 @@ class Definitions:
         Pra.dateofrequest,
         Pra.enddaterequested,
         Pra.enddatereturned,
+        Pra.id,
         Pra.initialcontact,
         Pra.issheriffsdept,
         Pra.lea,
@@ -56,7 +58,7 @@ class Definitions:
         Pra.variablescomplete,
     ]
 
-    STATUS_PRA_FIELDS =  [
+    STATUS_PRA_FIELDS = [
         Pra.county,
         Pra.currentstatus,
         Pra.dataactionable,
