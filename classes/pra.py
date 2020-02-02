@@ -13,9 +13,11 @@ class Pra(BaseModel):
     dataanalyzed = BooleanField(null=True)
     datacleaned = BooleanField(null=True)
     datageocoded = BooleanField(null=True)
+    datatype = CharField(null=True)
     dataqualitychecked = BooleanField(null=True)
     dateoflastcontact = CharField(null=True)
     dateofrequest = CharField(null=True)
+    datereceived = CharField(null=True)
     enddaterequested = CharField(null=True)
     enddatereturned = CharField(null=True)
     # three keys: "name", "method", "info" with corresonding values
@@ -33,6 +35,3 @@ class Pra(BaseModel):
     # the subkeys are requested (bool as value) and received (bool as value)
     variableschecked = BooleanField(null=True)
     variablescomplete = BooleanField(null=True)
-
-
-db_helper.create_tables([Pra])
