@@ -1,5 +1,4 @@
 import os
-from flask_bcrypt import generate_password_hash, check_password_hash
 
 
 class Config:
@@ -14,10 +13,5 @@ class Config:
     GUEST_USERNAME = "mdh_guest"
     GUEST_PASSWORD = b'$2b$12$YYP4zDbjtIXgIOrOo0DbDup.rmmuL/vS8L2ud6V0bAgT/jsX2zJyK'
 
-
-pw_hash1 = check_password_hash(Config.ADMIN_PASSWORD, "angeladavis")
-pw_hash2 = check_password_hash(Config.GUEST_PASSWORD, "mlkingjr")
-print(pw_hash1)
-print(pw_hash2)
 
 SECRET_KEY = 'theeeeeee random string'
