@@ -70,7 +70,7 @@ class Definitions:
         Pra.dataqualitychecked,
         Pra.datatype,
         Pra.dateofrequest,
-        Pra.datareceived,
+        Pra.datereceived,
         Pra.enddatereturned,
         Pra.issheriffsdept,
         Pra.lea,
