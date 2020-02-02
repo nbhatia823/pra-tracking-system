@@ -3,7 +3,7 @@ from db import Db
 from playhouse.shortcuts import model_to_dict
 from definitions import Definitions
 from config import Config
-from flask_bcrypt import check_password_hash
+from flask_bcrypt import check_password_hash, generate_password_hash
 
 
 pra_api = Blueprint('pra_api', __name__)
@@ -14,17 +14,22 @@ def login():
     login_info = request.json
     username = login_info["username"].lower()
     password = login_info["password"]
-    if username == Config.ADMIN_USERNAME and check_password_hash(password, Config.ADMIN_PASSWORD):
-        # Login as admin
-        return Response(json.dumps({"access": "admin"}),
-                        mimetype='application/json',
-                        status=200)
-    elif username == Config.GUEST_USERNAME and check_password_hash(password, Config.GUEST_PASSWORD):
-        # Login as guest
-        return Response(json.dumps({"access": "guest"}),
-                        mimetype='application/json',
-                        status=200)
-    else:
+
+    try:
+
+        if username == Config.ADMIN_USERNAME and check_password_hash(Config.ADMIN_PASSWORD, password):
+            # Login as admin
+            return Response(json.dumps({"access": "admin"}),
+                            mimetype='application/json',
+                            status=200)
+        elif username == Config.GUEST_USERNAME and check_password_hash(Config.GUEST_PASSWORD, password):
+            # Login as guest
+            return Response(json.dumps({"access": "guest"}),
+                            mimetype='application/json',
+                            status=200)
+        else:
+            return Response(status=400)
+    except:
         return Response(status=400)
 
 
