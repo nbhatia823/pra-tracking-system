@@ -16,13 +16,13 @@ class Db:
 
     # Return list of pras with the desired columns; fields/columns are editable by passing in array of fields accessible by Pra.fieldname
     @staticmethod
-    def get_pras(filters=None, limit=Definitions.DEFAULT_NUM_ROW_ENTRIES, fields=Definitions.DEFAULT_PRA_FIELDS):
+    def get_pras(filters=None, fields=Definitions.DEFAULT_PRA_FIELDS):
         if filters:
             expr_filters = Db.convert_filter_dict_to_peewee_expr(filters)
             pras = Pra.select(
-                *fields).where(expr_filters).limit(limit).dicts().execute()
+                *fields).where(expr_filters).dicts().execute()
         else:
-            pras = Pra.select(*fields).limit(limit).dicts().execute()
+            pras = Pra.select(*fields).dicts().execute()
         pras = [pra for pra in pras]
         return pras
 

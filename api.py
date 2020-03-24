@@ -41,15 +41,6 @@ def post_or_get_pras():
         # each entry is field_name: filter_value i.e. LEA="Los Angeles Police Department"
         query_params = request.args.to_dict()
 
-        # "limit" is passed as normal query parameter. if present remove it and store in limit
-        # so filters can be exclusively filters for "WHERE" query
-        # if not present, then default limit will be used
-        if "limit" in query_params:
-            limit = query_params["limit"]
-            del query_params["limit"]
-        else:
-            limit = Definitions.DEFAULT_NUM_ROW_ENTRIES
-
         # "fields" passed as array of fields, perform same as above
         if "fields" in query_params:
             fields_requested = query_params["fields"]
@@ -67,7 +58,7 @@ def post_or_get_pras():
         filters = query_params
 
         pra_dicts = Db.get_pras(
-            fields=fields, filters=filters, limit=limit)
+            fields=fields, filters=filters)
 
         # package pras as json
         pra_json = json.dumps(pra_dicts)

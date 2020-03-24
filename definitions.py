@@ -17,8 +17,6 @@ class Definitions:
         ('portal', 'Portal'),
     ]
 
-    DEFAULT_NUM_ROW_ENTRIES = 20
-
     DEFAULT_PRA_FIELDS = [
         Pra.id,
         Pra.county,
