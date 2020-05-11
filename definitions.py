@@ -3,11 +3,12 @@ from classes.pra import Pra
 
 class Definitions:
     STATUSES = [
-        ('Data requested - no response', 'Data requested - no response'),
-        ('Data requested - in process', 'Data requested - in process'),
-        ('Data received - incomplete', 'Data received - incomplete'),
-        ('Data received - no errors', 'Data received - no errors'),
-        ('Data ready for analysis', 'Data ready for analysis'),
+        ("Requested", "Requested"),
+        ("Requested - No Response", "Requested - No Response"),
+        ("Received - Incomplete", "Received - Incomplete"),
+        ("Contesting", "Contesting"),
+        ("Processing", "Processing"),
+        ("Analyzing")
     ]
 
     CONTACT_METHODS = [
