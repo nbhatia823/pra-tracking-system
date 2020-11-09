@@ -8,7 +8,9 @@ from db import Db
 from api import pra_api
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+     r"/api/*": {"origins": ["http://localhost:8080", "https://mdh-pra-tracking.netlify.app"]}})
+
 
 app.register_blueprint(pra_api)
 

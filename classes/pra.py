@@ -4,7 +4,7 @@ from playhouse.postgres_ext import ArrayField, JSONField
 
 
 class Pra(BaseModel):
-    active = BooleanField(null=False)
+    active = BooleanField(null=True)
     comments = TextField(null=True)
     county = CharField(null=True)
     # three keys: "name", "method", "info" with corresonding values
@@ -24,6 +24,7 @@ class Pra(BaseModel):
     # three keys: "name", "method", "info" with corresonding values
     initialcontact = JSONField(null=True)
     issheriffsdept = BooleanField(null=True)
+    lastupdated = CharField(null=True)
     lea = CharField(null=True)
     leadmember = CharField(null=True)
     linktoprarequest = CharField(null=True)
