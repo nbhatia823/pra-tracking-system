@@ -28,7 +28,7 @@ class Definitions:
         Pra.dateofrequest,
         Pra.currentstatus,
         Pra.active,
-        Pra.datelastupdated
+        Pra.lastupdated
     ]
 
     ALL_PRA_FIELDS = [
@@ -60,7 +60,7 @@ class Definitions:
         Pra.variableschecked,
         Pra.variablescomplete,
         Pra.active,
-        Pra.datelastupdated
+        Pra.lastupdated
 
     ]
 
@@ -82,5 +82,5 @@ class Definitions:
         Pra.variableschecked,
         Pra.variablescomplete,
         Pra.active,
-        Pra.datelastupdated
+        Pra.lastupdated
     ]
