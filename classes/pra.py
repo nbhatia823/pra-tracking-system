@@ -4,6 +4,7 @@ from playhouse.postgres_ext import ArrayField, JSONField
 
 
 class Pra(BaseModel):
+    active = BooleanField(null=False)
     comments = TextField(null=True)
     county = CharField(null=True)
     # three keys: "name", "method", "info" with corresonding values
